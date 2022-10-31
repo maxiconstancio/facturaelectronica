@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import { getInvoice, getWsaa } from './controllers.js';
+
+import { getPersona, getWsaa } from './controllers.js';
 
 
 const router = Router();
 
 router.get('/auth', getWsaa);
 
-router.post('/invoice', getInvoice)
+router.get('/', getPersona);
 
 export default router;

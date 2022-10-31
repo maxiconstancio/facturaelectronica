@@ -3,9 +3,10 @@
 /**
  * Module dependencies.
  */
-
+ import fs from "fs";
  import app from "../app.js";
  import { createServer } from "http";
+import path from "path";
  
  /**
   * Normalize a port into a number, string, or false.
@@ -76,7 +77,9 @@
   */
  
  const server = createServer(app);
- 
+export  const pem = fs.readFileSync(path.resolve()+process.env.FILE_PEM, "utf-8");
+export const key = fs.readFileSync(path.resolve()+process.env.FILE_KEY, "utf-8");
+
  /**
   * Listen on provided port, on all network interfaces.
   */

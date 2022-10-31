@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
+import routes from './routes/index.js'
 import { config } from 'dotenv';
 config();
 
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(path.resolve(), 'public')));
 
 //app.use('/', indexRouter);
-
+app.use(routes);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
     next(createError(404));
