@@ -5,7 +5,9 @@
  */
 
  import app from "../app.js";
+ import fs from "fs";
  import { createServer } from "http";
+import path from "path";
  
  /**
   * Normalize a port into a number, string, or false.
@@ -64,6 +66,10 @@
    console.log("Listening on " + bind);
  }
  
+ //Get Files Cert
+export const pem = fs.readFileSync( path.resolve() + process.env.FILE_PEM, 'utf-8');
+export const key = fs.readFileSync(path.resolve() + process.env.FILE_KEY, 'utf-8');
+
  /**
   * Get port from environment and store in Express.
   */

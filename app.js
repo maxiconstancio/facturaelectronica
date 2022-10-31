@@ -4,7 +4,7 @@ import cors from 'cors';
 import { config } from 'dotenv';
 config();
 
-//import indexRouter from './apiServices/auth';
+import routes from './routes/index.js';
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(path.resolve(), 'public')));
 
-//app.use('/', indexRouter);
+app.use(routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.json('error');
   });
   
   export default app;
