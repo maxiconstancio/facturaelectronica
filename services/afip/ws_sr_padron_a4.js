@@ -1,9 +1,9 @@
 import soap from 'soap';
-const url = process.env.URL_PADRON_A13;
+const url = process.env.URL_PADRON_A4;
 
 export const getPerson = async (data) => {
 
-    
+
 
     try {
         let client = await soap.createClientAsync(url);

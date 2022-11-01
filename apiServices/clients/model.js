@@ -39,6 +39,18 @@ const Clients = new Schema({
     type: String,
     required: true,
   },
+  telefono: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  condicionIva: {
+    type: String,
+    required: true,
+  }
 });
 
 export default mongoose.model("clients", Clients);
