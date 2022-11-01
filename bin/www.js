@@ -82,7 +82,7 @@ const databaseConnect = async () => {
    const addr = server.address();
    const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
    await databaseConnect();
-  await findAdmin();
+   await findAdmin();
    console.log("Listening on " + bind);
  }
  

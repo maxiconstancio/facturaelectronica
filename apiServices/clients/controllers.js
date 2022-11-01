@@ -1,38 +1,28 @@
-import wsaa from "../../services/afip/wsaa.js";
+import Clients from "./model.js";
+export async function createClient(req, res)  {
 
-import { getPerson } from "../../services/afip/ws_sr_padron_a13.js";
-
-export const getWsaa = async (req, res, next) =>  {
     try {
-        res.json( await wsaa('ws_sr_padron_a13'));
-    } catch (error) {
-        res.status(500).json(error)
-    }
-}
-
-
-
-export const getPersona = async (req, res, next) => {
-    
-    
-    try {
-        const body = req.body;
+        const client = req.client[0].personaReturn.persona
         
-        const data = { token: body.token, sign: body.sign, cuitRepresentada: body.Cuit, idPersona: body.idPersona};
+        const userFound = await Clients.findOne({ cuit: client.idPersona });
         
-        const result = await (getPerson(data));
-       
-        if(typeof(result[0]) === 'object') {
-        //Si no es objeto es un error    
-        res.status(200).json(result);
-        } else {
-            console.log(result.response.status)
-            res.status(result.response.status).json(result.response.data)
+      
+        if (userFound) {
+            return res.status(409).json("Client Already Exist");
         }
-        
-    } catch (error) {
-        res.status(500).json(error)
+        console.log(client.domicilio)
+        const newClient = await Clients.create({
+          cuit: client.idPersona,
+          razonSocial: client.razonSocial,
+          direccion: client.domicilio[0].direccion,
+          localidad: client.domicilio[0].localidad,
+          provincia: client.domicilio[0].descripcionProvincia
+        });
+        console.log(newClient)
+        return res.status(200).json(`Client ${newClient.razonSocial} Created Successfully`);
+      } catch (error) {
+        return res.status(500).json(error);
+      }
     }
-    
 
-}
+export default createClient
