@@ -5,9 +5,28 @@
  */
  import fs from "fs";
  import app from "../app.js";
+import mongoose from "mongoose";
+import findAdmin from "./initialSetup.js";
+
  import { createServer } from "http";
 import path from "path";
  
+
+/**
+*  Database Connection
+*/
+const databaseConnect = async () => {
+ try {
+   await mongoose.connect(process.env.MONGO_URI, {
+     useNewUrlParser: true,
+     useUnifiedTopology: true,
+   });
+   console.log("Database connected");
+ } catch (error) {
+   return console.log("Database error", error);
+ }
+}
+
  /**
   * Normalize a port into a number, string, or false.
   */
@@ -62,6 +81,8 @@ import path from "path";
  const onListening = async() => {
    const addr = server.address();
    const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+   await databaseConnect();
+  await findAdmin();
    console.log("Listening on " + bind);
  }
  
@@ -88,4 +109,5 @@ export const key = fs.readFileSync(path.resolve()+process.env.FILE_KEY, "utf-8")
  server.on("error", onError);
  server.on("listening", onListening);
  
- 
+
+ export default mongoose;
