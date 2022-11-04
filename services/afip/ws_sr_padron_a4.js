@@ -19,3 +19,16 @@ export const getPerson = async (data) => {
       }
 
 }
+
+
+export const dummy = async () => {
+
+  try {
+    
+    let client = await soap.createClientAsync(url);
+    let result = await client.dummyAsync();
+    return result
+  } catch (error) {
+    return(error);
+  }
+}
