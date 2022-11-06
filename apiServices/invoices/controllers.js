@@ -36,3 +36,17 @@ export const registerInvoice = async (req, res) => {
     }
 
 }
+
+export const getAll = async (req, res) =>{
+
+    try {
+        const query = req.query
+        const allInvoices = await Invoice.find(query);
+        return(res.status(200).json(allInvoices));
+    } catch (error) {
+        return (res.status(500).json('Error' +  error) )
+    }
+}
+
+
+

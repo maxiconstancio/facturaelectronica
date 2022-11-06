@@ -1,11 +1,18 @@
 import { Router } from 'express';
-import { getWsaa, registerInvoice } from './controllers.js';
+import { getWsaa, registerInvoice, getAll } from './controllers.js';
 import { getInvoice } from '../../middleware/invoice.js';
 
 const router = Router();
 
+// Get Authorization Token and Key
 router.get('/auth', getWsaa);
 
+//Get Autorizathion CAE and Register Invoice
 router.post('/invoice', getInvoice, registerInvoice)
+
+
+//Get All Invoices 
+
+router.get('/', getAll);
 
 export default router;
