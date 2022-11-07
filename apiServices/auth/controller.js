@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "../../services/jwt/index.js";
-import Users from "../../users/models.js";
+import Users from "../../apiServices/users/model.js";
 
 export async function login(req, res) {
     const { email, password } = req.body;

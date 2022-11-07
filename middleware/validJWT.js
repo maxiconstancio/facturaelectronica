@@ -1,4 +1,4 @@
-import jwt from "../utils/jwt.js";
+import jwt from "../services/jwt/index.js";
 
 const validJWT = async (req, res, next) => {
     
@@ -9,7 +9,7 @@ const validJWT = async (req, res, next) => {
         const userLogged = await jwt.verifyToken(token);
         req.user = userLogged.id;
         req.permissionLevel = userLogged.permissionLevel
-        console.log(req.permissionLevel)
+        
         return next(); 
 
     } catch (error) {

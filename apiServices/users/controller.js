@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import createHttpError from "http-errors";
 
-import Users from "./models.js";
+import Users from "./model.js";
 
 export async function createUser(req, res) {
   try {

@@ -24,7 +24,7 @@ const createToken = async (id, permissionLevel) => {
 };
 
 
-const verifyToken = (token) => {
+const  verifyToken = async (token) => {
   if (!token) return new Error('Invalid token');
   try {
     return jwt.verify(token, jwtSecret, {});  
