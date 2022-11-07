@@ -44,6 +44,7 @@ export async function deleteUser(req, res) {
 
   try {
     const userToDelete = req.params.email;
+    if (userToDelete == process.env.USER_ADMIN) return res.status(401).json('User Admin can\'t remove')
     if (await Users.findOne({ email: userToDelete })) {
       await Users.deleteOne({ email: userToDelete });
       res.status(200).json('Deleted Successfully');
