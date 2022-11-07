@@ -52,3 +52,43 @@ export const FECAESolicitar = async  (data) => {
       }
 }
 
+
+export const ListarComprobantes = async ( auth) => {
+
+  try {
+    
+    let client = await soap.createClientAsync(url);
+    let result = await client.FEParamGetTiposCbteAsync(auth);
+    
+    return result
+  } catch (error) {
+    
+  }
+}
+
+
+export const ListarTiposDoc = async ( auth) => {
+
+  try {
+    
+    let client = await soap.createClientAsync(url);
+    let result = await client.FEParamGetTiposDocAsync(auth);
+    
+    return result
+  } catch (error) {
+    
+  }
+}
+
+export const ListarPtoVenta = async ( auth) => {
+
+  try {
+    
+    let client = await soap.createClientAsync(url);
+    let result = await client.FEParamGetPtosVentaAsync(auth);
+    
+    return result
+  } catch (error) {
+    
+  }
+}
