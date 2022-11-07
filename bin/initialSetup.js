@@ -1,10 +1,10 @@
 
 import Users from '../apiServices/users/model.js';
 import Comprobantes from '../apiServices/typesInvoice/model.js'
-
+import TypesDoc from '../apiServices/tiposDoc/model.js'
 import bcrypt from 'bcryptjs';
 import { config } from 'dotenv';
-import { ListarComprobantes, ListarPtoVenta } from '../services/afip/wsfe.js';
+import { ListarComprobantes, ListarDocs } from '../services/afip/wsfe.js';
 import wsaa from '../services/afip/wsaa.js';
 config()
 
@@ -39,7 +39,13 @@ const findAdmin = async () => {
   } catch (error) {
     console.log('error al insertar tipos de comprobantes')
   }
-  console.log(await ListarPtoVenta({Auth: auth}))
+  const getDocs = await ListarDocs({Auth: auth});
+  const tiposDoc = getDocs[0].FEParamGetTiposDocResult.ResultGet.DocTipo
+  try {
+    await TypesDoc.insertMany(tiposDoc);
+  } catch (error) {
+    console.log('error al insertar tipos de comprobantes')
+  }
 };
 
 

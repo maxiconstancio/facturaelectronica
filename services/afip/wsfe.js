@@ -80,12 +80,12 @@ export const ListarTiposDoc = async ( auth) => {
   }
 }
 
-export const ListarPtoVenta = async ( auth) => {
+export const ListarDocs = async ( auth) => {
 
   try {
     
     let client = await soap.createClientAsync(url);
-    let result = await client.FEParamGetPtosVentaAsync(auth);
+    let result = await client.FEParamGetTiposDocAsync(auth);
     
     return result
   } catch (error) {
