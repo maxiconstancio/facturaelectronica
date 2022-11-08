@@ -6,6 +6,7 @@ import { addTimeExp, getDateAfip } from "../../utils/dates.js";
 import { config } from 'dotenv';
 config();
 
+const CUIT = process.env.CUIT;
 
 import { createCms } from "./config/TRA.js";
 
@@ -55,7 +56,7 @@ const wsaa = async (_service) => {
         
         const token = (res.loginTicketResponse.credentials[0].token);
         const sign = (res.loginTicketResponse.credentials[0].sign[0]);
-      resolve ({Token: token[0], Sign: sign, Cuit: '20337729836'});
+      resolve ({Token: token[0], Sign: sign, Cuit: CUIT});
       }
       
     }))
