@@ -1,10 +1,11 @@
 import { FECAESolicitar, FECompUltimoAutorizado } from "../services/afip/wsfe.js";
 
+const CUIT = process.env.CUIT;
 export const getInvoice = async(req, res, next) => {
 
     
     const body = req.body;
-        const comp = await FECompUltimoAutorizado({Token: body.Token, Sign: body.Sign, Cuit: body.Cuit}, body.ptoVenta, body.tipoCbte) + 1
+        const comp = await FECompUltimoAutorizado({Token: body.Token, Sign: body.Sign, Cuit: CUIT}, body.ptoVenta, body.tipoCbte) + 1
         const data = { Auth: {Token: body.Token, Sign: body.Sign, Cuit: body.Cuit}, 
         ptoVenta: body.ptoVenta,
         cbteTipo: body.tipoCbte, 

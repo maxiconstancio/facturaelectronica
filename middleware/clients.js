@@ -2,6 +2,7 @@ import wsaa from "../services/afip/wsaa.js";
 
 import { getPerson } from "../services/afip/ws_sr_padron_a4.js";
 
+const CUIT = process.env.CUIT;
 export const getWsaa = async (req, res, next) =>  {
     try {
         res.json( await wsaa('ws_sr_padron_a4'));
@@ -18,7 +19,7 @@ export const getPersona = async (req, res, next) => {
     try {
         const body = req.body;
         
-        const data = { token: body.token, sign: body.sign, cuitRepresentada: body.Cuit, idPersona: body.idPersona};
+        const data = { token: body.token, sign: body.sign, cuitRepresentada: CUIT, idPersona: body.idPersona};
         
         const result = await (getPerson(data));
        
