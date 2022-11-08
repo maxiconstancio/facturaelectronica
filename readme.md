@@ -10,6 +10,7 @@ La API Rest realizada en nodeJS con express, MongoDB, autenticacion con JWT. Tod
 
 1) Copy .env.example to .env and fill with database credentials and Files PEM and KEY
 
+2) Save Files .PEM and .KEY in config folder
 To install dependencies, run
 ``` bash
 npm install
