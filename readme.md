@@ -60,7 +60,6 @@ x-access-token: tokenJWT
 ```bash
 Token: tokenWSFE
 Sign: SignWSFE
-Cuit: ADMIN_CUIT
 ptoVenta: Punto de Venta (Integer)
 tipoCbte: Segun Listado Tipo Comprobante (Integer)
 concepto: Integer: 1 (Productos) - 2 (Servicios)
@@ -84,7 +83,6 @@ x-access-token: tokenJWT
 ```bash
 token: TokenPadronA4
 sign: SignPadronA4
-Cuit: ADMIN_CUIT
 idPersona: docClient (Integer)
 telefono: Long
 email: email
