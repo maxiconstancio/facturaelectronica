@@ -17,7 +17,8 @@ export const registerInvoice = async (req, res) => {
         const env = process.env;
         const data = req.data
         const dataUser = {razonSocial: env.RAZON_SOCIAL, Cuit: env.CUIT, domicilio: env.DOMICILIO, iva: env.IVA, IIBB: env.IIBB, inicio: env.INICIO_ACTIVIDAD }
-        const client = await Clients.findOne({idPersona: data.DocNro});
+        const client = await Clients.findOne({cuit: data.DocNro});
+        
         const newInvoice = await Invoice.create({
             concepto: data.Concepto,
             docTipo: data.DocTipo,

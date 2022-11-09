@@ -21,7 +21,7 @@ export const getInvoice = async(req, res, next) => {
         if (CAEResult[0].FECAESolicitarResult.hasOwnProperty('Errors')) {
             return (res.status(500).json(CAEResult[0].FECAESolicitarResult.Errors.Err))
         } else {    
-            
+            console.log(CAEResult[0].FECAESolicitarResult.FeDetResp.FECAEDetResponse)
             req.CAE = CAEResult[0].FECAESolicitarResult.FeDetResp.FECAEDetResponse[0].CAE
             
         req.data = data; 
